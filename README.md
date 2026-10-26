@@ -15,7 +15,7 @@
 
 ## 使い方
 
-`WebPCKEditor_modified.html`（公開時は `index.html` などにリネーム）をブラウザで開きます。
+`PCKStudioWeb.html`（公開時は `index.html` などにリネーム）をブラウザで開きます。
 
 ## ライセンス
 
