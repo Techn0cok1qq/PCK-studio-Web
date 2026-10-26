@@ -15,7 +15,7 @@
 
 ## 使い方
 
-`PCKStudioWeb.html`（公開時は `index.html` などにリネーム）をブラウザで開きます。
+`index.html`（公開時は `index.html` などにリネーム）をブラウザで開きます。
 
 ## ライセンス
 
