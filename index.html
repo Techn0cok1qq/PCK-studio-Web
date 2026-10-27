@@ -39,18 +39,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCK Studio Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@400&display=swap">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(0, 122, 204, 0.3);
+            -webkit-tap-highlight-color: rgba(134, 214, 90, 0.35);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1e1e1e;
-            color: #d4d4d4;
+            font-family: 'MCFont', 'Pixelify Sans', 'DotGothic16', 'Yu Gothic', 'Meiryo', ui-monospace, monospace;
+            background: #2b2b2b;
+            color: #e8e8e8;
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -64,8 +68,8 @@
 
         /* メニューバー */
         .menu-bar {
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             display: flex;
             align-items: center;
             padding: 0;
@@ -78,7 +82,7 @@
             display: none;
             padding: 8px 12px;
             cursor: pointer;
-            color: #cccccc;
+            color: #ffffff;
             font-size: 18px;
             background: none;
             border: none;
@@ -86,29 +90,29 @@
         }
 
         .mobile-menu-toggle:hover {
-            background: #3e3e42;
+            background: #555555;
         }
 
         .menu-item {
             padding: 8px 15px;
             cursor: pointer;
-            color: #cccccc;
+            color: #ffffff;
             font-size: 13px;
             transition: background 0.2s;
         }
 
         .menu-item:hover {
-            background: #3e3e42;
+            background: #555555;
         }
 
         .menu-item:active {
-            background: #007acc;
+            background: #4a8f29;
             color: white;
         }
 
         /* ファイル情報バー */
         .info-bar {
-            background: #007acc;
+            background: #4a8f29;
             color: white;
             padding: 8px 15px;
             font-size: 12px;
@@ -152,8 +156,8 @@
         /* 左サイドバー（アセット一覧） */
         .sidebar {
             width: 320px;
-            background: #252526;
-            border-right: 1px solid #3e3e42;
+            background: #333333;
+            border-right: 1px solid #555555;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -161,18 +165,18 @@
 
         .sidebar-header {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             font-weight: 600;
             font-size: 12px;
-            color: #cccccc;
+            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .asset-count {
-            color: #858585;
+            color: #aaaaaa;
             font-size: 11px;
             font-weight: normal;
         }
@@ -185,8 +189,8 @@
 
         .sidebar-action-button {
             padding: 12px 10px;
-            border-top: 1px solid #3e3e42;
-            background: #252526;
+            border-top: 1px solid #555555;
+            background: #333333;
         }
 
         .sidebar-action-button .btn-action {
@@ -195,22 +199,22 @@
 
         .asset-item {
             padding: 10px 15px;
-            border-bottom: 1px solid #2d2d30;
+            border-bottom: 1px solid #3a3a3a;
             cursor: pointer;
             transition: background 0.15s;
             position: relative;
         }
 
         .asset-item:hover {
-            background: #2a2d2e;
+            background: #383838;
         }
 
         .asset-item:active {
-            background: #333638;
+            background: #404040;
         }
 
         .asset-item.selected {
-            background: #094771;
+            background: #2f5a1e;
         }
 
         .asset-item.selected::before {
@@ -220,7 +224,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: #007acc;
+            background: #4a8f29;
         }
 
         .asset-item.crash-warning {
@@ -263,7 +267,7 @@
         }
 
         .asset-filename {
-            color: #d4d4d4;
+            color: #e8e8e8;
             font-size: 13px;
             margin-bottom: 4px;
             word-break: break-all;
@@ -274,14 +278,14 @@
         }
 
         .asset-directory {
-            color: #7d7d7d;
+            color: #9a9a9a;
             font-size: 12px;
             opacity: 0.7;
             font-weight: 400;
         }
 
         .asset-file {
-            color: #d4d4d4;
+            color: #e8e8e8;
             font-weight: 500;
         }
 
@@ -294,7 +298,7 @@
 
         .asset-info {
             font-size: 11px;
-            color: #858585;
+            color: #aaaaaa;
         }
 
         /* ツリービュー - フォルダ */
@@ -305,10 +309,10 @@
         .asset-folder-toggle {
             width: 100%;
             padding: 8px 12px;
-            background: #252526;
+            background: #333333;
             border: none;
-            border-bottom: 1px solid #3e3e42;
-            color: #d4d4d4;
+            border-bottom: 1px solid #555555;
+            color: #e8e8e8;
             font-size: 13px;
             font-weight: 500;
             cursor: pointer;
@@ -321,17 +325,17 @@
         }
 
         .asset-folder-toggle:hover {
-            background: #2d2d30;
+            background: #3a3a3a;
         }
 
         .asset-folder-toggle:active {
-            background: #007acc;
+            background: #4a8f29;
         }
 
         .asset-folder-content {
             display: none;
             margin-left: 12px;
-            border-left: 1px solid #3e3e42;
+            border-left: 1px solid #555555;
             padding-left: 0;
         }
 
@@ -342,8 +346,8 @@
         /* コンテキストメニュー */
         .context-menu {
             position: fixed;
-            background: #252526;
-            border: 1px solid #3e3e42;
+            background: #333333;
+            border: 1px solid #555555;
             border-radius: 4px;
             z-index: 10000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
@@ -356,7 +360,7 @@
 
         .context-menu-item {
             padding: 8px 12px;
-            color: #d4d4d4;
+            color: #e8e8e8;
             cursor: pointer;
             font-size: 13px;
             transition: background 0.15s;
@@ -368,7 +372,7 @@
         }
 
         .context-menu-item:hover {
-            background: #2d2d30;
+            background: #3a3a3a;
         }
 
         .context-menu-item.disabled {
@@ -382,7 +386,7 @@
 
         .context-menu-divider {
             height: 1px;
-            background: #3e3e42;
+            background: #555555;
             margin: 4px 0;
         }
 
@@ -397,8 +401,8 @@
         /* プレビューエリア（上半分） */
         .preview-area {
             flex: 1;
-            background: #1e1e1e;
-            border-bottom: 1px solid #3e3e42;
+            background: #2b2b2b;
+            border-bottom: 1px solid #555555;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -406,11 +410,11 @@
 
         .preview-header {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             font-weight: 600;
             font-size: 12px;
-            color: #cccccc;
+            color: #ffffff;
         }
 
         .preview-content {
@@ -422,7 +426,7 @@
         /* 詳細エリア（下半分） */
         .details-area {
             height: 300px;
-            background: #252526;
+            background: #333333;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -430,11 +434,11 @@
 
         .details-header {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             font-weight: 600;
             font-size: 12px;
-            color: #cccccc;
+            color: #ffffff;
         }
 
         .details-content {
@@ -447,17 +451,17 @@
             display: flex;
             padding: 8px 0;
             font-size: 12px;
-            border-bottom: 1px solid #2d2d30;
+            border-bottom: 1px solid #3a3a3a;
         }
 
         .detail-label {
             min-width: 110px;
-            color: #569cd6;
+            color: #ffff55;
             font-weight: 600;
         }
 
         .detail-value {
-            color: #d4d4d4;
+            color: #e8e8e8;
             word-break: break-all;
             flex: 1;
         }
@@ -467,7 +471,7 @@
         }
 
         .properties-title {
-            color: #569cd6;
+            color: #ffff55;
             font-weight: 600;
             margin-bottom: 10px;
             font-size: 12px;
@@ -476,7 +480,7 @@
         .property-item {
             padding: 8px 0;
             font-size: 12px;
-            border-bottom: 1px solid #2d2d30;
+            border-bottom: 1px solid #3a3a3a;
             display: grid;
             grid-template-columns: 150px 1fr 30px;
             gap: 10px;
@@ -502,14 +506,14 @@
         }
 
         .property-key {
-            color: #9cdcfe;
+            color: #aaffff;
             font-weight: 600;
         }
 
         .property-key-input {
-            background: #1e1e1e;
-            border: 1px solid #3e3e42;
-            color: #9cdcfe;
+            background: #2b2b2b;
+            border: 1px solid #555555;
+            color: #aaffff;
             padding: 4px 8px;
             border-radius: 2px;
             font-size: 12px;
@@ -519,13 +523,13 @@
 
         .property-key-input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .property-value-input {
-            background: #1e1e1e;
-            border: 1px solid #3e3e42;
-            color: #ce9178;
+            background: #2b2b2b;
+            border: 1px solid #555555;
+            color: #ffb870;
             padding: 4px 8px;
             border-radius: 2px;
             font-size: 12px;
@@ -534,7 +538,7 @@
 
         .property-value-input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .asset-action-buttons {
@@ -542,12 +546,12 @@
             gap: 8px;
             margin-top: 12px;
             padding-top: 12px;
-            border-top: 1px solid #2d2d30;
+            border-top: 1px solid #3a3a3a;
         }
 
         .btn-asset-action {
             padding: 6px 14px;
-            background: #0e639c;
+            background: #4a8f29;
             border: none;
             color: white;
             border-radius: 3px;
@@ -557,30 +561,30 @@
         }
 
         .btn-asset-action:hover {
-            background: #1177bb;
+            background: #5aa534;
         }
 
         .btn-asset-action:active {
-            background: #0d5a8f;
+            background: #3f7a22;
             transform: scale(0.98);
         }
 
         .btn-asset-action:disabled {
-            background: #3e3e42;
-            color: #858585;
+            background: #555555;
+            color: #aaaaaa;
             cursor: not-allowed;
         }
 
         .loc-entry-item {
-            background: #2d2d30;
-            border: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border: 1px solid #555555;
             border-radius: 4px;
             padding: 12px;
             margin-bottom: 10px;
         }
 
         .loc-entry-key {
-            color: #4ec9b0;
+            color: #80ff80;
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 8px;
@@ -600,15 +604,15 @@
 
         .loc-lang-label {
             min-width: 50px;
-            color: #858585;
+            color: #aaaaaa;
             font-size: 11px;
         }
 
         .loc-value-input {
             flex: 1;
-            background: #1e1e1e;
-            border: 1px solid #3e3e42;
-            color: #cccccc;
+            background: #2b2b2b;
+            border: 1px solid #555555;
+            color: #ffffff;
             padding: 4px 8px;
             border-radius: 2px;
             font-size: 12px;
@@ -616,7 +620,7 @@
 
         .loc-value-input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .loc-table-editable {
@@ -626,11 +630,11 @@
         }
 
         .loc-table-editable th {
-            background: #2d2d30;
-            color: #cccccc;
+            background: #3a3a3a;
+            color: #ffffff;
             padding: 8px;
             text-align: left;
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
             position: sticky;
             top: 0;
             z-index: 1;
@@ -638,33 +642,33 @@
 
         .loc-table-editable td {
             padding: 4px;
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
         }
 
         .loc-table-editable .key-cell {
-            color: #4ec9b0;
+            color: #80ff80;
             font-weight: 600;
-            background: #252526;
+            background: #333333;
             padding: 8px;
         }
 
         .loc-table-editable .value-cell {
-            background: #1e1e1e;
+            background: #2b2b2b;
         }
 
         .loc-table-editable input {
             width: 100%;
             background: transparent;
             border: 1px solid transparent;
-            color: #cccccc;
+            color: #ffffff;
             padding: 6px 8px;
             font-size: 12px;
         }
 
         .loc-table-editable input:focus {
             outline: none;
-            border-color: #007acc;
-            background: #2d2d30;
+            border-color: #4a8f29;
+            background: #3a3a3a;
         }
 
         .loc-editor-container {
@@ -675,27 +679,27 @@
 
         .loc-keys-panel {
             width: 300px;
-            background: #252526;
-            border: 1px solid #3e3e42;
+            background: #333333;
+            border: 1px solid #555555;
             overflow-y: auto;
         }
 
         .loc-key-item {
             padding: 8px 12px;
             cursor: pointer;
-            border-bottom: 1px solid #2d2d30;
-            color: #4ec9b0;
+            border-bottom: 1px solid #3a3a3a;
+            color: #80ff80;
             font-size: 12px;
-            font-family: 'Consolas', monospace;
+            font-family: 'MCFont', 'Pixelify Sans', 'DotGothic16', 'Yu Gothic', 'Meiryo', ui-monospace, monospace;
         }
 
         .loc-key-item:hover {
-            background: #2d2d30;
+            background: #3a3a3a;
         }
 
         .loc-key-item.selected {
-            background: #094771;
-            border-left: 3px solid #007acc;
+            background: #2f5a1e;
+            border-left: 3px solid #4a8f29;
         }
 
         .loc-detail-panel {
@@ -706,15 +710,15 @@
         }
 
         .loc-bulk-replace {
-            background: #2d2d30;
-            border: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border: 1px solid #555555;
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 4px;
         }
 
         .loc-bulk-replace-title {
-            color: #cccccc;
+            color: #ffffff;
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 8px;
@@ -728,9 +732,9 @@
 
         .loc-bulk-replace-input input {
             flex: 1;
-            background: #1e1e1e;
-            border: 1px solid #3e3e42;
-            color: #cccccc;
+            background: #2b2b2b;
+            border: 1px solid #555555;
+            color: #ffffff;
             padding: 6px 10px;
             border-radius: 3px;
             font-size: 12px;
@@ -738,11 +742,11 @@
 
         .loc-bulk-replace-input input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .loc-bulk-replace-btn {
-            background: #0e639c;
+            background: #4a8f29;
             border: none;
             color: white;
             padding: 6px 16px;
@@ -753,14 +757,14 @@
         }
 
         .loc-bulk-replace-btn:hover {
-            background: #1177bb;
+            background: #5aa534;
         }
 
         .loc-values-container {
             flex: 1;
             overflow-y: auto;
-            background: #1e1e1e;
-            border: 1px solid #3e3e42;
+            background: #2b2b2b;
+            border: 1px solid #555555;
             padding: 12px;
         }
 
@@ -773,15 +777,15 @@
         }
 
         .loc-lang-label-edit {
-            color: #858585;
+            color: #aaaaaa;
             font-size: 12px;
             font-weight: 600;
         }
 
         .loc-value-edit-input {
-            background: #252526;
-            border: 1px solid #3e3e42;
-            color: #cccccc;
+            background: #333333;
+            border: 1px solid #555555;
+            color: #ffffff;
             padding: 6px 10px;
             border-radius: 3px;
             font-size: 12px;
@@ -790,7 +794,7 @@
 
         .loc-value-edit-input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .loc-no-selection {
@@ -798,17 +802,17 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            color: #858585;
+            color: #aaaaaa;
             font-size: 13px;
         }
 
         /* プレビュー用スタイル */
         .preview-hex {
-            font-family: 'Consolas', 'Monaco', monospace;
+            font-family: 'MCFont', 'Pixelify Sans', 'DotGothic16', 'Yu Gothic', 'Meiryo', ui-monospace, monospace;
             font-size: 12px;
             line-height: 1.6;
-            color: #d4d4d4;
-            background: #1e1e1e;
+            color: #e8e8e8;
+            background: #2b2b2b;
             white-space: pre;
         }
 
@@ -832,7 +836,7 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            color: #858585;
+            color: #aaaaaa;
         }
 
         .welcome-icon {
@@ -864,17 +868,17 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #1e1e1e;
+            background: #2b2b2b;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #424242;
-            border: 3px solid #1e1e1e;
+            background: #4a4a4a;
+            border: 3px solid #2b2b2b;
             border-radius: 7px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #4e4e4e;
+            background: #5a5a5a;
         }
 
         /* LOCテーブルスタイル */
@@ -882,18 +886,18 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
-            background: #1a1a1a;
+            background: #1f1f1f;
         }
 
         .loc-table thead tr {
-            background: #2a2a2a;
+            background: #303030;
             position: sticky;
             top: 0;
             z-index: 1;
         }
 
         .loc-table th {
-            border: 1px solid #444;
+            border: 1px solid #555555;
             padding: 10px;
             text-align: left;
             font-weight: 600;
@@ -901,13 +905,13 @@
         }
 
         .loc-table td {
-            border: 1px solid #444;
+            border: 1px solid #555555;
             padding: 8px;
-            background: #1a1a1a;
+            background: #1f1f1f;
         }
 
         .loc-table .key-cell {
-            font-family: 'Consolas', monospace;
+            font-family: 'MCFont', 'Pixelify Sans', 'DotGothic16', 'Yu Gothic', 'Meiryo', ui-monospace, monospace;
             color: #4FC3F7;
         }
 
@@ -917,18 +921,18 @@
 
         .loc-stats {
             margin-top: 12px;
-            color: #888;
+            color: #aaaaaa;
             font-size: 11px;
         }
 
         /* ボタンスタイル */
         .details-header {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             font-weight: 600;
             font-size: 12px;
-            color: #cccccc;
+            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -941,7 +945,7 @@
 
         .btn-action {
             padding: 6px 12px;
-            background: #007acc;
+            background: #4a8f29;
             color: white;
             border: none;
             border-radius: 3px;
@@ -951,11 +955,11 @@
         }
 
         .btn-action:hover {
-            background: #005fa3;
+            background: #3f7a22;
         }
 
         .btn-action:active {
-            background: #004578;
+            background: #2a5a14;
         }
 
         /* モーダルダイアログスタイル */
@@ -977,8 +981,8 @@
         }
 
         .modal-dialog {
-            background: #252526;
-            border: 1px solid #3e3e42;
+            background: #333333;
+            border: 1px solid #555555;
             border-radius: 5px;
             max-width: 500px;
             width: 90vw;
@@ -990,10 +994,10 @@
 
         .modal-header {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-bottom: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-bottom: 1px solid #555555;
             font-weight: 600;
-            color: #cccccc;
+            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1002,7 +1006,7 @@
         .modal-close {
             background: none;
             border: none;
-            color: #888;
+            color: #aaaaaa;
             font-size: 18px;
             cursor: pointer;
             padding: 0;
@@ -1022,8 +1026,8 @@
 
         .modal-footer {
             padding: 12px 15px;
-            background: #2d2d30;
-            border-top: 1px solid #3e3e42;
+            background: #3a3a3a;
+            border-top: 1px solid #555555;
             display: flex;
             gap: 10px;
             justify-content: flex-end;
@@ -1031,7 +1035,7 @@
 
         .btn-primary {
             padding: 8px 16px;
-            background: #007acc;
+            background: #4a8f29;
             color: white;
             border: none;
             border-radius: 3px;
@@ -1040,18 +1044,18 @@
         }
 
         .btn-primary:hover {
-            background: #005fa3;
+            background: #3f7a22;
         }
 
         .btn-primary:active {
-            background: #004578;
+            background: #2a5a14;
             transform: scale(0.98);
         }
 
         .btn-secondary {
             padding: 8px 16px;
-            background: #3e3e42;
-            color: #cccccc;
+            background: #555555;
+            color: #ffffff;
             border: none;
             border-radius: 3px;
             cursor: pointer;
@@ -1059,27 +1063,27 @@
         }
 
         .btn-secondary:hover {
-            background: #4a4a4a;
+            background: #555555;
         }
 
         .btn-secondary:active {
-            background: #555555;
+            background: #666666;
             transform: scale(0.98);
         }
 
         .skin-item {
             padding: 10px;
             margin-bottom: 8px;
-            background: #1a1a1a;
-            border: 1px solid #3e3e42;
+            background: #1f1f1f;
+            border: 1px solid #555555;
             border-radius: 3px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .skin-item:hover {
-            background: #2a2a2a;
-            border-color: #007acc;
+            background: #303030;
+            border-color: #4a8f29;
         }
 
         .skin-item.disabled {
@@ -1088,12 +1092,12 @@
         }
 
         .skin-item.disabled:hover {
-            background: #1a1a1a;
-            border-color: #3e3e42;
+            background: #1f1f1f;
+            border-color: #555555;
         }
 
         .skin-item-name {
-            color: #d4d4d4;
+            color: #e8e8e8;
             font-weight: 600;
             margin-bottom: 4px;
             display: flex;
@@ -1103,19 +1107,19 @@
         }
 
         .skin-item-dir {
-            color: #7d7d7d;
+            color: #9a9a9a;
             font-size: 12px;
             opacity: 0.7;
             font-weight: 400;
         }
 
         .skin-item-file {
-            color: #d4d4d4;
+            color: #e8e8e8;
             font-weight: 600;
         }
 
         .skin-item-info {
-            color: #888;
+            color: #aaaaaa;
             font-size: 11px;
         }
 
@@ -1126,7 +1130,7 @@
 
         .form-label {
             display: block;
-            color: #d4d4d4;
+            color: #e8e8e8;
             font-size: 12px;
             margin-bottom: 6px;
             font-weight: 600;
@@ -1135,9 +1139,9 @@
         .form-input {
             width: 100%;
             padding: 8px;
-            background: #1a1a1a;
-            border: 1px solid #3e3e42;
-            color: #d4d4d4;
+            background: #1f1f1f;
+            border: 1px solid #555555;
+            color: #e8e8e8;
             font-size: 12px;
             border-radius: 3px;
             box-sizing: border-box;
@@ -1145,16 +1149,16 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #007acc;
-            background: #252526;
+            border-color: #4a8f29;
+            background: #333333;
         }
 
         .form-select {
             width: 100%;
             padding: 8px;
-            background: #1a1a1a;
-            border: 1px solid #3e3e42;
-            color: #d4d4d4;
+            background: #1f1f1f;
+            border: 1px solid #555555;
+            color: #e8e8e8;
             font-size: 12px;
             border-radius: 3px;
             box-sizing: border-box;
@@ -1162,13 +1166,13 @@
 
         .form-select:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .preview-image {
             max-width: 100%;
             max-height: 200px;
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
             border-radius: 3px;
             margin: 10px 0;
             image-rendering: pixelated;
@@ -1182,9 +1186,9 @@
         }
 
         .skin-preview-panel {
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
             border-radius: 4px;
-            background: #1a1a1a;
+            background: #1f1f1f;
             overflow: hidden;
             min-height: 230px;
             display: flex;
@@ -1195,8 +1199,8 @@
             padding: 8px 10px;
             font-size: 11px;
             color: #b8b8b8;
-            background: #2a2a2a;
-            border-bottom: 1px solid #3e3e42;
+            background: #303030;
+            border-bottom: 1px solid #555555;
         }
 
         .skin-layout-wrap {
@@ -1205,14 +1209,14 @@
             align-items: center;
             justify-content: center;
             padding: 10px;
-            background: repeating-conic-gradient(#2a2a2a 0% 25%, #1e1e1e 0% 50%) 50% / 20px 20px;
+            background: repeating-conic-gradient(#303030 0% 25%, #2b2b2b 0% 50%) 50% / 20px 20px;
         }
 
         .skin-layout-image {
             max-width: 100%;
             max-height: 280px;
             image-rendering: pixelated;
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
             background: rgba(0, 0, 0, 0.2);
         }
 
@@ -1221,7 +1225,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at 50% 35%, #2e2e2e 0%, #1b1b1b 60%, #141414 100%);
+            background: radial-gradient(circle at 50% 35%, #2b2b2b 0%, #0f0f0f 60%, #0f0f0f 100%);
             position: relative;
         }
 
@@ -1246,8 +1250,8 @@
             padding: 2px 6px;
             border-radius: 3px;
             background: rgba(0, 0, 0, 0.45);
-            color: #cccccc;
-            border: 1px solid #3e3e42;
+            color: #ffffff;
+            border: 1px solid #555555;
         }
 
         .save-dialog-overlay {
@@ -1264,8 +1268,8 @@
         }
 
         .save-dialog {
-            background: #252526;
-            border: 1px solid #3e3e42;
+            background: #333333;
+            border: 1px solid #555555;
             border-radius: 6px;
             padding: 25px;
             min-width: 450px;
@@ -1275,7 +1279,7 @@
         .save-dialog-title {
             font-size: 16px;
             font-weight: 600;
-            color: #cccccc;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -1286,7 +1290,7 @@
         .save-dialog-label {
             display: block;
             font-size: 12px;
-            color: #cccccc;
+            color: #ffffff;
             margin-bottom: 6px;
             font-weight: 500;
         }
@@ -1294,9 +1298,9 @@
         .save-dialog-input {
             width: 100%;
             padding: 8px 10px;
-            background: #3c3c3c;
-            border: 1px solid #3e3e42;
-            color: #cccccc;
+            background: #444444;
+            border: 1px solid #555555;
+            color: #ffffff;
             border-radius: 3px;
             font-family: inherit;
             font-size: 13px;
@@ -1305,7 +1309,7 @@
 
         .save-dialog-input:focus {
             outline: none;
-            border-color: #007acc;
+            border-color: #4a8f29;
         }
 
         .save-dialog-radio-group {
@@ -1325,7 +1329,7 @@
         }
 
         .save-dialog-radio label {
-            color: #cccccc;
+            color: #ffffff;
             cursor: pointer;
             font-size: 13px;
         }
@@ -1348,21 +1352,21 @@
         }
 
         .save-dialog-btn-primary {
-            background: #007acc;
+            background: #4a8f29;
             color: white;
         }
 
         .save-dialog-btn-primary:hover {
-            background: #005a9e;
+            background: #3f7a22;
         }
 
         .save-dialog-btn-secondary {
-            background: #3e3e42;
-            color: #cccccc;
+            background: #555555;
+            color: #ffffff;
         }
 
         .save-dialog-btn-secondary:hover {
-            background: #505050;
+            background: #5e5e5e;
         }
 
         .app-toast-container {
@@ -1381,9 +1385,9 @@
             max-width: min(420px, calc(100vw - 36px));
             padding: 12px 14px;
             border-radius: 6px;
-            border: 1px solid #3e3e42;
-            background: rgba(37, 37, 38, 0.96);
-            color: #d4d4d4;
+            border: 1px solid #555555;
+            background: rgba(51, 51, 51, 0.96);
+            color: #e8e8e8;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
             font-size: 12px;
             line-height: 1.5;
@@ -1417,7 +1421,7 @@
         .app-dialog-message {
             font-size: 13px;
             line-height: 1.6;
-            color: #d4d4d4;
+            color: #e8e8e8;
             white-space: pre-wrap;
         }
 
@@ -1621,7 +1625,7 @@
             right: 40px;
             top: 50%;
             transform: translateY(-50%);
-            background: #0e639c;
+            background: #4a8f29;
             border: none;
             color: white;
             width: 24px;
@@ -1632,7 +1636,7 @@
             opacity: 0;
             transition: opacity 0.2s, background 0.2s;
         }
-        .asset-dup-btn:hover { background: #1177bb; }
+        .asset-dup-btn:hover { background: #5aa534; }
         .asset-item:hover .asset-dup-btn,
         .asset-item.selected .asset-dup-btn,
         .asset-item.selected .asset-delete-btn { opacity: 1; }
@@ -1640,14 +1644,14 @@
             .asset-dup-btn, .asset-delete-btn { opacity: 1; }
         }
         .skin-panel {
-            background: #1f1f22;
-            border: 1px solid #3e3e42;
+            background: #242424;
+            border: 1px solid #555555;
             border-radius: 4px;
             padding: 12px;
             margin-bottom: 14px;
         }
         .skin-panel-title {
-            color: #569cd6;
+            color: #ffff55;
             font-weight: 600;
             font-size: 12px;
             margin-bottom: 10px;
@@ -1660,7 +1664,7 @@
         .skin-field label {
             display: block;
             font-size: 11px;
-            color: #9d9d9d;
+            color: #bbbbbb;
             margin-bottom: 4px;
         }
         .skin-field.wide { grid-column: 1 / -1; }
@@ -1673,17 +1677,17 @@
             gap: 8px;
             margin-top: 12px;
         }
-        .btn-asset-action.secondary { background: #3a3d41; }
-        .btn-asset-action.secondary:hover { background: #4a4d52; }
-        .props-title { color: #569cd6; font-weight: 600; font-size: 12px; margin: 4px 0 8px; }
+        .btn-asset-action.secondary { background: #707070; }
+        .btn-asset-action.secondary:hover { background: #7a86bd; }
+        .props-title { color: #ffff55; font-weight: 600; font-size: 12px; margin: 4px 0 8px; }
         .imp-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
         .imp-preview {
-            border: 1px solid #3e3e42;
+            border: 1px solid #555555;
             border-radius: 3px;
             min-height: 240px;
             max-height: 58vh;
             padding: 8px;
-            background: #1a1a1a;
+            background: #1f1f1f;
             overflow: auto;
         }
         .imp-preview .skin-dual-preview { display: flex; flex-direction: column; margin: 0; }
@@ -1699,7 +1703,7 @@
                 position: sticky;
                 top: -15px;
                 z-index: 5;
-                background: #252526;
+                background: #333333;
                 padding: 8px 0 6px;
                 margin-bottom: 4px;
             }
@@ -1708,22 +1712,349 @@
             .imp-right .imp-preview .skin-3d-canvas { min-height: 190px; }
             .imp-left > div[data-act="list"] { max-height: none !important; }
         }
+
+        /* ===== Minecraft GUI テーマ（Animation Cape Skin Pack Generator 準拠） ===== */
+        @font-face {
+            font-family: "MCFont";
+            src: local("Minecraft"), local("Minecraft Regular"), local("Minecraftia"), local("Monocraft"),
+                url("fonts/minecraft.woff2") format("woff2"), url("fonts/minecraft.ttf") format("truetype");
+            font-display: swap;
+        }
+        :root {
+            --bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACSklEQVR4nFWSvY7aQBSF7/hXMPL8IHsEiECBRJNISFuGYpUmVYptIopNmWrT0OZBsk+wyhOkXylvQJEGicIsgtVgYc8gL7IxOMVEK+W2c4++c88ZdH9//+fXjyw/NXwvogQAkG3V5wsPvOylqs8XZFtKpwRTAFjJBN1ej/oi1LkimCLbireyL0Kj0bkqKgQAosWMEgAs+H8YdnngxVupc/X207eIEtFirOkg25L7TOkUff/83kjlPvOdetCO0kNpniNKDMq4MrYtY4M1nWNRUsLnyw0PPNZ0fKfWuZL7TOeqPl8o4eNhV7SYE2/leNhdrBMAYE0HOiI9lABACY+3kmF30I7i512Wn2KAvgithu+lh1K02KAjjGan9JsPX8xJhkkw7YtwPOyuZIK+fnwHACbQndIAMOqFi3UiWkzus2NRGv6xKBu+N+qFVkTJsSh54OlciRaLKJkvNxElSqejXsiwu1gnvlMDwLEo58uNZaKcLzdZfgIAHngMuyuZUMIBoKjQsSgH7ajhe2bTMpUx7DLsKp2a6yfTWbyV2UvlO/V42DWeGXaz/GRRwnngUcIp4YN2dHVzV1Ro/fvnZDqT+6yo0GKdpIdyJZOiQpPpDN1ej15r7otwJZOG713d3D09Phi4zlWWnxh2CaY88JxBR9TnixEg22LYpYQ9PT7wwEM2r88XgimAMrXo3HXkPhv1QgDIXirWdOLtieALAMyXm1fyeNhND6WB/Pt8i3XCms58uWn4ns4Vsq3JdMawO+iI8bAbP+92Spvc/gL3KSBwC74VYwAAAABJRU5ErkJggg==");
+            --bg-size: 64px 64px;
+            --bg-overlay: rgba(0, 0, 0, .42);
+            --stone: #c6c6c6; --stone-hi: #ffffff; --stone-lo: #555555;
+            --well: #2b2b2b; --well-hi: #ffffff; --well-lo: #0f0f0f;
+            --ink: #3f3f3f; --well-muted: #aaaaaa;
+            --btn: #707070; --btn-hi: #b0b0b0; --btn-lo: #3a3a3a; --btn-hover: #7a86bd;
+            --green: #4a8f29; --green-hi: #86d65a; --green-lo: #2a5a14; --green-hover: #5aa534;
+            --yellow: #ffff55; --danger: #aa0000;
+            --shadow: 2px 2px 0 #3f3f3f;
+            --bevel-stone: inset 3px 3px 0 var(--stone-hi), inset -3px -3px 0 var(--stone-lo);
+            --bevel-well: inset 3px 3px 0 var(--well-lo), inset -3px -3px 0 var(--well-hi);
+            --bevel-btn: inset 2px 2px 0 var(--btn-hi), inset -2px -2px 0 var(--btn-lo);
+            --bevel-btn-down: inset 2px 2px 0 var(--btn-lo), inset -2px -2px 0 var(--btn-hi);
+            --bevel-green: inset 2px 2px 0 var(--green-hi), inset -2px -2px 0 var(--green-lo);
+            --bevel-green-down: inset 2px 2px 0 var(--green-lo), inset -2px -2px 0 var(--green-hi);
+        }
+        * { border-radius: 0 !important; }
+        body {
+            background-color: #3b2a1c;
+            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
+            background-size: auto, var(--bg-size);
+            background-repeat: no-repeat, repeat;
+            image-rendering: pixelated;
+            -webkit-font-smoothing: none;
+            color: #fff;
+        }
+        b, strong, h1, h2, button { font-weight: 400; }
+        button, input, select, textarea { font-family: inherit; }
+        img, canvas { image-rendering: pixelated; }
+
+        /* ピクセルアイコン */
+        .mc-ico {
+            display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -0.2em;
+            background-color: currentColor;
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            filter: drop-shadow(1px 1px 0 rgba(0,0,0,.55));
+        }
+        .mc-ico-arrow_r{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M4 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM4 6h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M4 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM4 6h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-tri_d{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-check{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M6 1h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM0 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM2 6h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M6 1h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM0 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM2 6h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-cross{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-plus{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-menu{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-chest{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-paper{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM1 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM1 2h1v1h-1zM6 2h1v1h-1zM1 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM1 4h1v1h-1zM6 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM1 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM1 2h1v1h-1zM6 2h1v1h-1zM1 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM1 4h1v1h-1zM6 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-folder{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM0 2h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 1h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM0 2h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-floppy{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-list{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-painting{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-head{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-banner{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM6 5h1v1h-1zM7 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM6 5h1v1h-1zM7 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-globe{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM5 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM7 5h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-sword{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M6 0h1v1h-1zM7 0h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM0 7h1v1h-1zM3 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M6 0h1v1h-1zM7 0h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM0 7h1v1h-1zM3 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-search{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM5 1h1v1h-1zM0 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM5 1h1v1h-1zM0 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-star{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM3 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM3 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-warn{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM5 3h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-boom{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM7 0h1v1h-1zM1 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM6 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM1 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM0 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM7 0h1v1h-1zM1 1h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM6 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM1 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM0 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-slot{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-inbox{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM1 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-chart{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M5 1h1v1h-1zM6 1h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M5 1h1v1h-1zM6 1h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM4 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-arrow_l{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM3 6h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM3 6h1v1h-1z'/%3E%3C/svg%3E");}
+.mc-ico-arrow_d{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1h-1zM4 0h1v1h-1zM3 1h1v1h-1zM4 1h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1z'/%3E%3C/svg%3E");}
+
+        .asset-type-icon .mc-ico-head { color: #f0c8a0; }
+        .asset-type-icon .mc-ico-banner { color: #ff5555; }
+        .asset-type-icon .mc-ico-chest { color: #d9a441; }
+        .asset-type-icon .mc-ico-globe { color: #55ffff; }
+        .asset-type-icon .mc-ico-list { color: #ffff55; }
+        .asset-type-icon .mc-ico-painting { color: #86d65a; }
+        .asset-folder-toggle .mc-ico-folder { color: #d9a441; }
+        .asset-folder-toggle .mc-ico-chest { color: #d9a441; }
+        .asset-folder-toggle .mc-ico-tri_d { width: .8em; height: .8em; }
+        .mc-ico-warn { color: #ffff55; }
+        .empty-icon, .welcome-icon { color: #aaaaaa; }
+        .empty-icon .mc-ico, .welcome-icon .mc-ico { width: 1.1em; height: 1.1em; filter: drop-shadow(3px 3px 0 rgba(0,0,0,.5)); }
+        .empty-icon .mc-ico-cross { color: #ff5555; }
+        .welcome-icon .mc-ico-chest { color: #d9a441; }
+        .menu-item .mc-ico, .info-bar .mc-ico { margin-right: 4px; }
+        .menu-item .mc-ico-floppy { color: #55ffff; }
+        .menu-item .mc-ico-folder { color: #ffd37a; }
+        .menu-item .mc-ico-paper { color: #ffffff; }
+        .menu-item .mc-ico-cross { color: #ff7777; }
+
+        /* ヘッダー */
+        .app-header { flex-shrink: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 20px 22px 12px; }
+        .app-header h1 { font-size: 28px; line-height: 1.25; color: #fff; text-shadow: 3px 3px 0 #3f3f3f; }
+        .app-header .subtitle { margin: 8px 0 0; font-size: 14px; color: var(--yellow); text-shadow: var(--shadow); }
+        .app-header .header-badge { font-size: 12px; color: #fff; text-shadow: var(--shadow); white-space: nowrap; padding: 6px 10px; background: var(--well); box-shadow: var(--bevel-well); border: 2px solid #000; }
+
+        /* メニュー（グレーのMCボタン） */
+        .menu-bar { height: auto; min-height: 0; gap: 8px; padding: 0 22px 12px; background: transparent; border: 0; flex-wrap: wrap; }
+        .menu-item, .mobile-menu-toggle {
+            color: #fff; text-shadow: var(--shadow); background: var(--btn);
+            border: 2px solid #000; box-shadow: var(--bevel-btn);
+            padding: 9px 16px; font-size: 14px; cursor: pointer;
+        }
+        .menu-item:hover, .mobile-menu-toggle:hover { background: var(--btn-hover); }
+        .menu-item:active { background: var(--btn); color: #fff; box-shadow: var(--bevel-btn-down); padding-top: 10px; padding-bottom: 8px; }
+        #menuNew, #menuOpen { background: var(--green); box-shadow: var(--bevel-green); }
+        #menuNew:hover, #menuOpen:hover { background: var(--green-hover); }
+        #menuNew:active, #menuOpen:active { box-shadow: var(--bevel-green-down); background: var(--green); }
+
+        /* 情報バー */
+        .info-bar { margin: 0 22px 12px; background: var(--well); color: #fff; border: 2px solid #000; box-shadow: var(--bevel-well); text-shadow: 2px 2px 0 #000; padding: 8px 14px; }
+        .info-badge { background: #000; color: var(--yellow); border: 0; }
+
+        /* メイン：石パネル */
+        .main-container { padding: 0 22px 14px; gap: 18px; }
+        .sidebar, .preview-area, .details-area {
+            background: var(--stone); border: 3px solid #000; box-shadow: var(--bevel-stone); padding: 0 0 12px; color: var(--ink);
+        }
+        .sidebar-header, .preview-header, .details-header {
+            background: transparent; color: var(--ink); font-size: 16px; padding: 16px 20px 10px; border: 0; text-shadow: none;
+        }
+        .asset-count { color: #4f4f4f; }
+        .content-area { gap: 18px; background: transparent; }
+        .preview-area { border-bottom: 3px solid #000; }
+        .details-area { border-top: 3px solid #000; }
+        /* 暗い溝 */
+        .asset-list, .preview-content, .details-content {
+            background: var(--well); box-shadow: var(--bevel-well); margin: 0 14px; color: #fff;
+        }
+        .sidebar-action-button { background: transparent; border: 0; padding: 12px 14px 0; }
+        .sidebar-action-button .btn-action { width: 100%; }
+        .preview-content { padding: 18px; }
+        .details-content { padding: 18px; }
+        .asset-item { border-bottom: 2px solid #000; }
+        .asset-item:hover { background: #3a3a3a; }
+        .asset-item.selected { box-shadow: inset 0 0 0 2px var(--yellow); background: #2f5a1e; }
+        .asset-item.selected::before { background: var(--yellow); }
+        .asset-filename, .asset-file { color: #fff; text-shadow: 1px 1px 0 #000; }
+        .asset-folder-toggle { background: #333; border-bottom: 2px solid #000; color: #fff; text-shadow: 1px 1px 0 #000; }
+        .asset-folder-content { border-left: 2px solid #555; }
+        .context-menu { background: var(--stone); border: 3px solid #000; box-shadow: var(--bevel-stone), 4px 4px 0 rgba(0,0,0,.5); }
+        .context-menu-item { color: var(--ink); }
+        .context-menu-item:hover { background: var(--btn-hover); color: #fff; }
+        .context-menu-divider { background: #8b8b8b; }
+
+        /* ボタン */
+        .btn-action, .btn-primary, .btn-asset-action, .save-dialog-btn-primary {
+            color: #fff; text-shadow: var(--shadow); background: var(--green);
+            border: 2px solid #000 !important; box-shadow: var(--bevel-green); padding: 9px 16px; font-size: 14px;
+        }
+        .btn-action:hover, .btn-primary:hover, .btn-asset-action:hover, .save-dialog-btn-primary:hover { background: var(--green-hover); }
+        .btn-action:active, .btn-primary:active, .btn-asset-action:active, .save-dialog-btn-primary:active { box-shadow: var(--bevel-green-down); transform: none; padding-top: 10px; padding-bottom: 8px; }
+        .btn-secondary, .save-dialog-btn-secondary, .btn-asset-action.secondary {
+            color: #fff; text-shadow: var(--shadow); background: var(--btn);
+            border: 2px solid #000 !important; box-shadow: var(--bevel-btn); padding: 9px 16px; font-size: 14px;
+        }
+        .btn-secondary:hover, .save-dialog-btn-secondary:hover, .btn-asset-action.secondary:hover { background: var(--btn-hover); }
+        .btn-secondary:active, .save-dialog-btn-secondary:active, .btn-asset-action.secondary:active { box-shadow: var(--bevel-btn-down); }
+        .btn-asset-action:disabled, .btn-action:disabled { color: #8a8a8a; text-shadow: none; background: #3a3a3a; box-shadow: inset 2px 2px 0 #4f4f4f, inset -2px -2px 0 #262626; cursor: not-allowed; }
+        .property-delete-btn, .asset-delete-btn { background: var(--danger); border: 2px solid #000 !important; box-shadow: inset 2px 2px 0 #ff5555, inset -2px -2px 0 #550000; color: #fff; }
+        .property-delete-btn:hover, .asset-delete-btn:hover { background: #cc2222; }
+        .asset-dup-btn { background: var(--btn); border: 2px solid #000 !important; box-shadow: var(--bevel-btn); color: #fff; }
+        .asset-dup-btn:hover { background: var(--btn-hover); }
+        .loc-bulk-replace-btn { background: var(--green); border: 2px solid #000 !important; box-shadow: var(--bevel-green); color: #fff; }
+        button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+
+        /* 入力欄 */
+        .form-input, .form-select, .save-dialog-input, .app-dialog-input, .property-key-input, .property-value-input,
+        .loc-value-input, .loc-value-edit-input, .loc-bulk-replace-input input, .loc-table-editable input {
+            background: #000; color: #fff; border: 2px solid #a0a0a0; box-shadow: none;
+        }
+        .form-input:focus, .form-select:focus, .save-dialog-input:focus, .property-key-input:focus, .property-value-input:focus,
+        .loc-value-input:focus, .loc-value-edit-input:focus, .loc-bulk-replace-input input:focus, .loc-table-editable input:focus { border-color: #fff; outline: none; }
+        .property-key-input { color: #aaffff; }
+        .property-value-input { color: #ffb870; }
+        input[type=radio], input[type=checkbox] { accent-color: var(--green); }
+
+        /* 内部カード */
+        .skin-panel, .loc-entry-item, .loc-bulk-replace, .skin-preview-panel, .skin-item, .imp-preview {
+            background: #333; border: 2px solid #000; box-shadow: inset 2px 2px 0 #555, inset -2px -2px 0 #1a1a1a;
+        }
+        .skin-item:hover { background: #404040; box-shadow: inset 2px 2px 0 #555, inset -2px -2px 0 var(--yellow); }
+        .detail-row, .property-item { border-bottom: 2px solid #000; }
+        .loc-table th, .loc-table-editable th { background: #3a3a3a; color: var(--yellow); }
+        .loc-table td, .loc-table th, .loc-table-editable td, .loc-table-editable th { border-color: #555; }
+
+        /* ダイアログ（石パネル） */
+        .modal-overlay, .save-dialog-overlay { background: rgba(0,0,0,.7); }
+        .modal-dialog, .save-dialog { background: var(--stone); border: 3px solid #000; box-shadow: var(--bevel-stone), 6px 6px 0 rgba(0,0,0,.5); color: var(--ink); }
+        .modal-header { background: transparent; border: 0; color: var(--ink); font-size: 17px; padding: 16px 20px 8px; }
+        .modal-header * { color: inherit; }
+        .modal-close { background: var(--btn); color: #fff; border: 2px solid #000; box-shadow: var(--bevel-btn); }
+        .modal-close:hover { background: var(--btn-hover); color: #fff; }
+        .modal-content { background: var(--well); box-shadow: var(--bevel-well); margin: 0 18px; color: #fff; }
+        .modal-footer { background: transparent; border: 0; padding: 14px 18px; }
+        .save-dialog-title { color: var(--ink); font-size: 17px; }
+        .save-dialog-label, .save-dialog-radio label { color: var(--ink); }
+        .app-dialog-message { color: #fff; }
+        .app-toast { background: var(--well); border: 3px solid #000; box-shadow: var(--bevel-well); color: #fff; text-shadow: 1px 1px 0 #000; }
+
+        /* スクロールバー */
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--btn); border: 2px solid #000; box-shadow: var(--bevel-btn); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--btn-hover); }
+
+        .welcome-screen .welcome-text { color: #fff; text-shadow: 2px 2px 0 #000; }
+        .welcome-screen .welcome-hint { color: var(--yellow); text-shadow: var(--shadow); }
+
+        /* フッター */
+        .site-footer { flex-shrink: 0; position: relative; z-index: 30; padding: 0 22px 14px; color: #e8e8e8; font-size: 13px; text-align: right; text-shadow: 2px 2px 0 #3f3f3f; }
+        .license-notice { text-align: left; }
+        .license-notice summary { display: inline-block; color: var(--yellow); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+        .license-content { position: absolute; left: 22px; bottom: calc(100% - 4px); width: min(560px, calc(100vw - 44px)); max-height: 55vh; overflow: auto;
+            padding: 14px 16px; background: var(--stone); border: 3px solid #000; box-shadow: var(--bevel-stone), 6px 6px 0 rgba(0,0,0,.5); color: var(--ink); text-shadow: none; line-height: 1.65; }
+        .license-content ul { margin: 8px 0 0; padding-left: 18px; }
+        .license-content a { color: #1c1cb0; }
+        .site-footer .footer-right { position: absolute; right: 22px; top: 0; }
+
+        @media (max-width: 768px) {
+            .app-header { padding: 14px 14px 10px; }
+            .app-header h1 { font-size: 20px; }
+            .app-header .header-badge { display: none; }
+            .menu-bar { padding: 0 14px 10px; }
+            .main-container { padding: 0 10px 10px; gap: 10px; }
+            .info-bar { margin: 0 14px 10px; }
+            .site-footer { padding: 0 14px 10px; }
+            .menu-item { padding: 8px 10px; font-size: 12px; }
+        }
+
+        /* ===== 調整: プレビュー・一覧を広く見やすく ===== */
+        .app-header { padding: 8px 16px 6px; }
+        .app-header h1 { font-size: 20px; }
+        .app-header .subtitle { margin-top: 3px; font-size: 12px; }
+        .app-header .header-badge { padding: 4px 8px; font-size: 11px; }
+        .menu-bar { padding: 0 16px 8px; gap: 6px; }
+        .menu-item { padding: 6px 12px; font-size: 13px; }
+        .info-bar { margin: 0 16px 8px; padding: 5px 12px; min-height: 0; }
+        .main-container { padding: 0 16px 6px; gap: 12px; min-height: 0; }
+        .site-footer { padding: 0 16px 4px; font-size: 11px; }
+        .sidebar-header, .preview-header, .details-header { padding: 8px 14px 6px; font-size: 14px; }
+        .sidebar, .preview-area, .details-area { padding-bottom: 8px; min-height: 0; }
+        .content-area { gap: 12px; min-height: 0; }
+        .asset-list, .preview-content, .details-content { margin: 0 8px; }
+        .sidebar-action-button { padding: 8px 8px 0; }
+        .preview-area { flex: 1 1 0; min-height: 260px; }
+        .details-area { height: auto; flex: 0 0 auto; max-height: 38vh; min-height: 150px; }
+        .preview-content {
+            padding: 10px;
+            background-color: #1f1f1f;
+            background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%), linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+        .details-content { padding: 12px; }
+        .preview-content img { max-width: 100%; }
+        .preview-content .skin-3d-canvas { min-height: 340px; }
+        .skin-layout-image { max-height: none; }
+        .detail-row { font-size: 13px; }
+        .asset-item { padding: 10px 14px; }
+        .asset-filename { font-size: 15px; }
+        .asset-type-icon { font-size: 20px; width: 24px; }
+        .asset-info { font-size: 12px; color: #cfcfcf; }
+        .asset-folder-toggle { font-size: 15px; padding: 10px 12px; }
+        .asset-directory { font-size: 13px; }
+        @media (min-width: 769px) {
+            .sidebar { width: 380px; flex-shrink: 0; }
+        }
+        @media (max-width: 768px) {
+            .preview-area { min-height: 220px; }
+            .details-area { max-height: 45vh; }
+        }
+
+        /* 3Dビューは滑らかに描画（ドット拡大はレイアウト画像のみ） */
+        canvas, .skin-3d-canvas { image-rendering: auto !important; }
+        .skin-3d-wrap, .skin-preview-panel { background-color: #1f1f1f; }
+        .skin-preview-panel-title, .skin-3d-model-label { color: #ffff55; text-shadow: 1px 1px 0 #000; }
+
+        /* ===== スクロール対応: プレビュー・アセット詳細 ===== */
+        .main-container { min-height: 0; }
+        .content-area { min-height: 0; overflow: hidden; }
+        .preview-area, .details-area { overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+        .preview-area { flex: 1 1 0; min-height: 200px; }
+        .details-area { flex: 0 0 38vh; height: 38vh; max-height: none; min-height: 150px; }
+        .preview-content, .details-content, .asset-list {
+            flex: 1 1 0; min-height: 0;
+            overflow-x: auto; overflow-y: scroll;
+            overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+            scrollbar-gutter: stable;
+        }
+        .preview-content, .details-content { touch-action: pan-x pan-y; }
+        .preview-content .skin-3d-canvas { touch-action: none; }
+        @media (max-width: 768px) {
+            /* 小さい画面は右側全体を縦スクロールし、各パネルは十分な高さを確保 */
+            .content-area { overflow-y: auto; overflow-x: hidden; }
+            .preview-area { flex: 0 0 auto; height: 58vh; min-height: 280px; }
+            .details-area { flex: 0 0 auto; height: 55vh; min-height: 240px; }
+        }
+
+        /* ===== 小さい画面でもプレビューを十分な高さで表示 ===== */
+        .content-area { overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-gutter: stable; gap: 12px; }
+        .preview-area { flex: 0 0 auto; height: clamp(440px, 68vh, 800px); min-height: 440px; max-height: none; }
+        .details-area { flex: 0 0 auto; height: clamp(320px, 56vh, 680px); min-height: 320px; max-height: none; }
+        .preview-header { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 14px; font-size: 13px; }
+        .preview-content .skin-3d-canvas { min-height: 320px; }
+        .preview-content .skin-dual-preview { min-height: 320px; }
+        @media (max-height: 760px) {
+            .app-header .subtitle, .app-header .header-badge { display: none; }
+            .app-header { padding: 6px 16px 4px; }
+            .app-header h1 { font-size: 17px; }
+            .menu-bar { padding-bottom: 6px; }
+            .menu-item { padding: 5px 10px; font-size: 12px; }
+            .info-bar { margin-bottom: 6px; padding: 3px 10px; font-size: 11px; }
+            .sidebar-header, .preview-header, .details-header { padding: 6px 12px 4px; }
+        }
     </style>
 </head>
 <body>
+    <header class="app-header">
+        <div>
+            <h1>PCK Studio Web</h1>
+            <p class="subtitle">Legacy Console Edition 向け PCK エディタ（スキン・マント・LOC）</p>
+        </div>
+        <span class="header-badge">ブラウザ内で完結・アップロードなし</span>
+    </header>
+
     <!-- メニューバー -->
     <div class="menu-bar">
-        <button class="mobile-menu-toggle" onclick="viewer.toggleSidebar()" aria-label="メニュー">☰</button>
-        <div class="menu-item" id="menuNew">📄 新規作成</div>
-        <div class="menu-item" id="menuOpen">📁 ファイルを開く</div>
-        <div class="menu-item" id="menuSave" style="opacity: 0.5; pointer-events: none;">💾 保存</div>
-        <div class="menu-item" id="menuClose" style="opacity: 0.5; pointer-events: none;">✕ 閉じる</div>
+        <button class="mobile-menu-toggle" onclick="viewer.toggleSidebar()" aria-label="メニュー"><i class="mc-ico mc-ico-menu"></i></button>
+        <div class="menu-item" id="menuNew"><i class="mc-ico mc-ico-paper"></i> 新規作成</div>
+        <div class="menu-item" id="menuOpen"><i class="mc-ico mc-ico-folder"></i> ファイルを開く</div>
+        <div class="menu-item" id="menuSave" style="opacity: 0.5; pointer-events: none;"><i class="mc-ico mc-ico-floppy"></i> 保存</div>
+        <div class="menu-item" id="menuClose" style="opacity: 0.5; pointer-events: none;"><i class="mc-ico mc-ico-cross"></i> 閉じる</div>
     </div>
 
     <!-- 新規作成ダイアログ -->
     <div class="save-dialog-overlay" id="newPackageDialogOverlay">
         <div class="save-dialog">
-            <div class="save-dialog-title">📄 新しいPCKパッケージを作成</div>
+            <div class="save-dialog-title"><i class="mc-ico mc-ico-paper"></i> 新しいPCKパッケージを作成</div>
             
             <div class="save-dialog-field">
                 <label class="save-dialog-label">パック名</label>
@@ -1759,7 +2090,7 @@
     <!-- 保存ダイアログ -->
     <div class="save-dialog-overlay" id="saveDialogOverlay">
         <div class="save-dialog">
-            <div class="save-dialog-title">💾 PCKファイルを保存</div>
+            <div class="save-dialog-title"><i class="mc-ico mc-ico-floppy"></i> PCKファイルを保存</div>
 
             <div class="save-dialog-field">
                 <label class="save-dialog-label">ファイル名</label>
@@ -1791,24 +2122,24 @@
     <div class="info-bar" id="infoBar">
         <div class="info-left">
             <div class="info-item">
-                <span>📦</span>
+                <span><i class="mc-ico mc-ico-chest"></i></span>
                 <span id="infoFilename">-</span>
             </div>
             <div class="info-item">
-                <span>📊</span>
+                <span><i class="mc-ico mc-ico-chart"></i></span>
                 <span id="infoEndian" class="info-badge">-</span>
             </div>
             <div class="info-item">
-                <span>🎮</span>
+                <span><i class="mc-ico mc-ico-sword"></i></span>
                 <span id="infoPlatform">-</span>
             </div>
         </div>
         <div class="info-right">
             <div class="info-item">
-                <span>📁 <span id="infoAssetCount">0</span> アセット</span>
+                <span><i class="mc-ico mc-ico-folder"></i> <span id="infoAssetCount">0</span> アセット</span>
             </div>
             <div class="info-item">
-                <span>💾 <span id="infoTotalSize">0 B</span></span>
+                <span><i class="mc-ico mc-ico-floppy"></i> <span id="infoTotalSize">0 B</span></span>
             </div>
         </div>
     </div>
@@ -1823,14 +2154,14 @@
             </div>
             <div class="asset-list" id="assetList">
                 <div class="welcome-screen">
-                    <div class="welcome-icon">📦</div>
+                    <div class="welcome-icon"><i class="mc-ico mc-ico-chest"></i></div>
                     <div class="welcome-text">PCK ファイルを開く</div>
                     <div class="welcome-hint">「ファイルを開く」をクリック</div>
                 </div>
             </div>
             <div class="sidebar-action-button">
-                <button class="btn-action" onclick="viewer.openSkinAddDialog()">➕ ADD SKIN</button>
-                <button class="btn-action" style="margin-top:8px;" onclick="viewer.importAssetsFromOtherPck()">📥 他のPCKから取り込む</button>
+                <button class="btn-action" onclick="viewer.openSkinAddDialog()"><i class="mc-ico mc-ico-plus"></i> ADD SKIN</button>
+                <button class="btn-action" style="margin-top:8px;" onclick="viewer.importAssetsFromOtherPck()"><i class="mc-ico mc-ico-inbox"></i> 他のPCKから取り込む</button>
             </div>
         </div>
 
@@ -1844,7 +2175,7 @@
                 <div class="preview-header" id="previewHeader">プレビュー</div>
                 <div class="preview-content" id="previewContent">
                     <div class="empty-message">
-                        <div class="empty-icon">👈</div>
+                        <div class="empty-icon"><i class="mc-ico mc-ico-arrow_l"></i></div>
                         左側からアセットを選択してください
                     </div>
                 </div>
@@ -1904,9 +2235,9 @@
                     <label class="form-label">スキンID</label>
                     <div style="display: flex; gap: 8px; align-items: center;">
                         <input type="text" id="skinIdInput" class="form-input" placeholder="100000-99999998" maxlength="8" style="flex: 1;" />
-                        <button class="btn-action" onclick="viewer.generateSkinId()" style="white-space: nowrap;">🔄 Auto-Gen</button>
+                        <button class="btn-action" onclick="viewer.generateSkinId()" style="white-space: nowrap;"><i class="mc-ico mc-ico-star"></i> Auto-Gen</button>
                     </div>
-                    <div style="font-size: 11px; color: #888; margin-top: 4px;">
+                    <div style="font-size: 11px; color: #aaaaaa; margin-top: 4px;">
                         自動生成（Auto-Gen）を使うと、既存スキンと重複しないIDが割り当てられます
                     </div>
                 </div>
@@ -1953,6 +2284,22 @@
 
     <input type="file" id="fileInput" accept=".pck" style="display:none;" />
     <input type="file" id="pngReplaceInput" accept=".png" style="display: none;" />
+
+    <footer class="site-footer">
+        <details class="license-notice">
+            <summary>ライセンス・クレジット</summary>
+            <div class="license-content">
+                <p><strong>PCK Studio Web</strong> · GPL-3.0<br>Web PCK Editor（HINATIR 作）を改変したものです。</p>
+                <ul>
+                    <li><strong>Web PCK Editor</strong> · HINATIR · <a href="https://github.com/HINATIR/Web-PCK-Editor" target="_blank" rel="noreferrer">GitHub</a></li>
+                    <li><strong>PCK-Studio</strong> · GPL-3.0 · PhoenixARC, MayN-L, NessieHax, EternalModz · <a href="https://github.com/LCERD/PCK-Studio" target="_blank" rel="noreferrer">GitHub</a></li>
+                    <li><strong>OMI-Filetype-Library</strong> · GPL-3.0 · NessieHax, PhoenixARC, MayN-L, Bagietas · <a href="https://github.com/LCERD/OMI-Filetype-Library" target="_blank" rel="noreferrer">GitHub</a></li>
+                    <li><strong>DotGothic16</strong> · OFL（日本語UIフォント） / <strong>Pixelify Sans</strong> · OFL（英数字UIフォント）</li>
+                    <li>アイコン・背景は本ツール用に作成したピクセルアート（Mojang素材は不使用）</li>
+                </ul>
+            </div>
+        </details>
+    </footer>
 
     <script>
         // =====================================================
@@ -3056,7 +3403,7 @@
                     
                     document.getElementById('assetList').innerHTML = `
                         <div class="welcome-screen">
-                            <div class="welcome-icon">📦</div>
+                            <div class="welcome-icon"><i class="mc-ico mc-ico-chest"></i></div>
                             <div class="welcome-text">PCK ファイルを開く</div>
                             <div class="welcome-hint">「ファイルを開く」をクリック</div>
                         </div>
@@ -3064,7 +3411,7 @@
                     
                     document.getElementById('previewContent').innerHTML = `
                         <div class="empty-message">
-                            <div class="empty-icon">👈</div>
+                            <div class="empty-icon"><i class="mc-ico mc-ico-arrow_l"></i></div>
                             左側からアセットを選択してください
                         </div>
                     `;
@@ -3427,8 +3774,8 @@
                         
                         const toggleBtn = document.createElement('button');
                         toggleBtn.className = 'asset-folder-toggle';
-                        const icon = node._type === 'pck-folder' ? '📦' : '📁';
-                        toggleBtn.innerHTML = '▼ ' + icon + ' ' + this.escapeHtml(key);
+                        const icon = node._type === 'pck-folder' ? '<i class="mc-ico mc-ico-chest"></i>' : '<i class="mc-ico mc-ico-folder"></i>';
+                        toggleBtn.innerHTML = '<i class="mc-ico mc-ico-tri_d"></i> ' + icon + ' ' + this.escapeHtml(key);
                         toggleBtn.title = key;
                         
                         // フォルダへの右クリックメニュー
@@ -3495,7 +3842,7 @@
                             <div class="asset-info">
                                 ${indexDisplay}Type ${asset.typeCode} • ${this.formatSize(asset.dataSize)}
                             </div>
-                            ${index !== undefined && index !== null ? `<button class="asset-delete-btn" onclick="event.stopPropagation(); viewer.deleteAsset(${index})" title="このアセットを削除">✕</button>` : ''}
+                            ${index !== undefined && index !== null ? `<button class="asset-delete-btn" onclick="event.stopPropagation(); viewer.deleteAsset(${index})" title="このアセットを削除"><i class="mc-ico mc-ico-cross"></i></button>` : ''}
                         `;
                         
                         // スキンの複製ボタン
@@ -3550,23 +3897,23 @@
                 // typeCodeで判定
                 switch (asset.typeCode) {
                     case 0:
-                        return '👤'; // スキン
+                        return '<i class="mc-ico mc-ico-head"></i>'; // スキン
                     case 1:
-                        return '🧥'; // マント
+                        return '<i class="mc-ico mc-ico-banner"></i>'; // マント
                     case 4:
-                        return '📦'; // PACKID
+                        return '<i class="mc-ico mc-ico-chest"></i>'; // PACKID
                     case 6:
-                        return '🌐'; // LOC（言語ファイル）
+                        return '<i class="mc-ico mc-ico-globe"></i>'; // LOC（言語ファイル）
                     default:
                         // その他はファイル名で判定
                         const filename = asset.filename.toLowerCase();
                         if (filename.endsWith('.json')) {
-                            return '📋';
+                            return '<i class="mc-ico mc-ico-list"></i>';
                         }
                         if (filename.endsWith('.png')) {
-                            return '🖼️';
+                            return '<i class="mc-ico mc-ico-painting"></i>';
                         }
-                        return '📄';
+                        return '<i class="mc-ico mc-ico-paper"></i>';
                 }
             }
 
@@ -3630,7 +3977,7 @@
                 }
 
                 if (asset.dataSize === 0) {
-                    content.innerHTML = '<div class="empty-message"><div class="empty-icon">📭</div>データなし</div>';
+                    content.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-slot"></i></div>データなし</div>';
                     return;
                 }
 
@@ -3669,7 +4016,7 @@
                     const result = locParser.parse();
 
                     if (!result) {
-                        container.innerHTML = '<div class="empty-message"><div class="empty-icon">❌</div>LOCファイルの解析に失敗しました</div>';
+                        container.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-cross"></i></div>LOCファイルの解析に失敗しました</div>';
                         return;
                     }
 
@@ -3704,7 +4051,7 @@
                     
                     // 右側: 詳細パネル
                     html += '<div class="loc-detail-panel">';
-                    html += '<div class="loc-no-selection">← 左側からキーを選択してください</div>';
+                    html += '<div class="loc-no-selection"><i class="mc-ico mc-ico-arrow_l"></i> 左側からキーを選択してください</div>';
                     html += '</div>';
                     
                     html += '</div>';
@@ -3712,7 +4059,7 @@
                     container.innerHTML = html;
                 } catch (error) {
                     console.error('LOC Preview Error:', error);
-                    container.innerHTML = `<div class="empty-message"><div class="empty-icon">❌</div>LOC解析エラー: ${error.message}</div>`;
+                    container.innerHTML = `<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-cross"></i></div>LOC解析エラー: ${error.message}</div>`;
                 }
             }
 
@@ -3749,7 +4096,7 @@
                 
                 // 一括置換UI
                 html += '<div class="loc-bulk-replace">';
-                html += '<div class="loc-bulk-replace-title">✨ すべての言語に一括適用</div>';
+                html += '<div class="loc-bulk-replace-title"><i class="mc-ico mc-ico-star"></i> すべての言語に一括適用</div>';
                 html += '<div class="loc-bulk-replace-input">';
                 html += `<input type="text" id="locBulkReplaceInput" placeholder="すべての言語に適用するテキスト">`;
                 html += `<button class="loc-bulk-replace-btn" onclick="viewer.applyBulkReplace()">一括適用</button>`;
@@ -3861,22 +4208,22 @@
                         container.innerHTML = `
                             <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
                                 <img src="${dataUrl}" 
-                                     style="width: ${displayWidth}px; height: ${displayHeight}px; max-width: 100%; height: auto; image-rendering: pixelated; border: 1px solid #3e3e42; background: repeating-conic-gradient(#2a2a2a 0% 25%, #1e1e1e 0% 50%) 50% / 20px 20px;" />
-                                <div style="color: #858585; font-size: 11px;">
+                                     style="width: ${displayWidth}px; height: ${displayHeight}px; max-width: 100%; height: auto; image-rendering: pixelated; border: 1px solid #555555; background: repeating-conic-gradient(#303030 0% 25%, #2b2b2b 0% 50%) 50% / 20px 20px;" />
+                                <div style="color: #aaaaaa; font-size: 11px;">
                                     元サイズ: ${img.width} × ${img.height} px
-                                    ${displayWidth !== img.width ? ` → 拡大表示: ${displayWidth} × ${displayHeight} px` : ''}
+                                    ${displayWidth !== img.width ? ` <i class="mc-ico mc-ico-arrow_r"></i> 拡大表示: ${displayWidth} × ${displayHeight} px` : ''}
                                 </div>
                             </div>
                         `;
                     };
                     
                     img.onerror = () => {
-                        container.innerHTML = '<div class="empty-message"><div class="empty-icon">🖼️</div>画像の表示に失敗しました</div>';
+                        container.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-painting"></i></div>画像の表示に失敗しました</div>';
                     };
                     
                     img.src = dataUrl;
                 } catch (error) {
-                    container.innerHTML = '<div class="empty-message"><div class="empty-icon">🖼️</div>画像の表示に失敗しました</div>';
+                    container.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-painting"></i></div>画像の表示に失敗しました</div>';
                 }
             }
 
@@ -4126,7 +4473,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="color: #858585; font-size: 11px; margin-top: 4px;">
+                    <div style="color: #aaaaaa; font-size: 11px; margin-top: 4px;">
                         元サイズ: ${img.width} × ${img.height} px
                         ${capePreview?.image ? ` • マント: ${capePreview.image.width} × ${capePreview.image.height} px` : ''}
                     </div>
@@ -4155,7 +4502,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="color: #858585; font-size: 11px; margin-top: 4px;">
+                    <div style="color: #aaaaaa; font-size: 11px; margin-top: 4px;">
                         元サイズ: ${img.width} × ${img.height} px
                     </div>
                 `;
@@ -5027,8 +5374,8 @@
                 if (isOversized) {
                     const typeName = asset.typeCode === 0 ? 'スキン' : 'マント';
                     html += `<div style="background: #5a1f1f; border: 2px solid #d32f2f; border-radius: 4px; padding: 12px; margin-bottom: 12px;">
-                        <div style="color: #ff6b6b; font-weight: bold; margin-bottom: 8px;">⚠️ クラッシュ警告</div>
-                        <div style="color: #d4d4d4; font-size: 12px; line-height: 1.6;">
+                        <div style="color: #ff6b6b; font-weight: bold; margin-bottom: 8px;"><i class="mc-ico mc-ico-warn"></i> クラッシュ警告</div>
+                        <div style="color: #e8e8e8; font-size: 12px; line-height: 1.6;">
                             この${typeName}のサイズは <strong>${asset.dataSize} バイト（0x${asset.dataSize.toString(16).toUpperCase()}）</strong>です。<br>
                             0x7FFF（${MAX_SIZE}バイト）を超える${typeName}はゲーム内でクラッシュする可能性があります。
                         </div>
@@ -5054,20 +5401,20 @@
                                    data-index="${index}"
                                    data-type="value"
                                    onchange="viewer.updateProperty(this)">
-                            <button class="property-delete-btn" onclick="viewer.deleteProperty(${index})" title="このプロパティを削除">✕</button>
+                            <button class="property-delete-btn" onclick="viewer.deleteProperty(${index})" title="このプロパティを削除"><i class="mc-ico mc-ico-cross"></i></button>
                         </div>`;
                     });
                     html += '</div>';
                     
                     // プロパティ追加ボタン
-                    html += `<button class="btn-asset-action" onclick="viewer.addProperty()">➕ プロパティ追加</button>`;
+                    html += `<button class="btn-asset-action" onclick="viewer.addProperty()"><i class="mc-ico mc-ico-plus"></i> プロパティ追加</button>`;
                     
                     // アクションボタン
                     html += '<div class="asset-action-buttons">';
                     html += '</div>';
                 } else {
-                    html += `<div class="empty-message"><div class="empty-icon">📋</div>プロパティなし</div>`;
-                    html += `<button class="btn-asset-action" onclick="viewer.addProperty()">➕ プロパティ追加</button>`;
+                    html += `<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-list"></i></div>プロパティなし</div>`;
+                    html += `<button class="btn-asset-action" onclick="viewer.addProperty()"><i class="mc-ico mc-ico-plus"></i> プロパティ追加</button>`;
                 }
 
                 container.innerHTML = html;
@@ -5131,7 +5478,7 @@
                 // モーダル内容を生成
                 let html = '';
                 if (items.length === 0) {
-                    html = '<div class="empty-message"><div class="empty-icon">📭</div>該当するアイテムがありません</div>';
+                    html = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-slot"></i></div>該当するアイテムがありません</div>';
                 } else {
                     html = items.map((item, idx) => {
                         const anim = item.properties?.find(p => p.key === 'ANIM')?.value || '-';
@@ -5588,7 +5935,7 @@
                     container.style.display = 'block';
                 };
                 img.onerror = () => {
-                    container.innerHTML = '<div class="empty-message"><div class="empty-icon">🖼️</div>画像の表示に失敗しました</div>';
+                    container.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-painting"></i></div>画像の表示に失敗しました</div>';
                     container.style.display = 'block';
                 };
                 img.src = this.selectedSkinDataUrl;
@@ -6440,7 +6787,7 @@
                             <button class="modal-close" data-act="close">&times;</button>
                         </div>
                         <div class="modal-content">
-                            <div style="font-size:11px;color:#888;margin-bottom:8px;">読み込み元: ${this.escapeHtml(fileName)}</div>
+                            <div style="font-size:11px;color:#aaaaaa;margin-bottom:8px;">読み込み元: ${this.escapeHtml(fileName)}</div>
                             <div class="form-group">
                                 <label class="form-label">コピー元のアセット</label>
                                 <select class="form-select" data-act="sel">${options}</select>
@@ -6452,7 +6799,7 @@
                             <div class="form-group">
                                 <label class="form-label">コピーするプロパティ（同じキーは置き換え）</label>
                                 <div data-act="props"></div>
-                                <div style="font-size:11px;color:#888;margin-top:6px;">名前・テーマ・マントのパスは初期状態でオフです</div>
+                                <div style="font-size:11px;color:#aaaaaa;margin-top:6px;">名前・テーマ・マントのパスは初期状態でオフです</div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -6469,10 +6816,10 @@
                     const it = items[parseInt(sel.value, 10)];
                     this.renderExternalPreview(it.asset, propPreview, items);
                     box.innerHTML = it.asset.properties.map((pr, i) => `
-                        <label style="display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #2d2d30;font-size:12px;">
+                        <label style="display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #3a3a3a;font-size:12px;">
                             <input type="checkbox" data-pi="${i}" ${SKIP.includes(pr.key) ? '' : 'checked'} style="margin-top:3px;">
-                            <span style="color:#9cdcfe;min-width:90px;">${this.escapeHtml(pr.key)}</span>
-                            <span style="color:#ce9178;word-break:break-all;flex:1;">${this.escapeHtml(pr.value)}</span>
+                            <span style="color:#aaffff;min-width:90px;">${this.escapeHtml(pr.key)}</span>
+                            <span style="color:#ffb870;word-break:break-all;flex:1;">${this.escapeHtml(pr.value)}</span>
                         </label>`).join('');
                 };
                 sel.onchange = render;
@@ -6566,11 +6913,11 @@
                     `<option value="${this.escapeAttr(a.filename)}">PCK: ${this.escapeHtml(a.filename)}</option>`).join('');
                 const rows = items.map((it, i) => {
                     const dn = (it.asset.properties || []).find(p => p.key === 'DISPLAYNAME');
-                    return `<div class="imp-row" data-text="${this.escapeAttr((it.path + ' ' + (dn ? dn.value : '')).toLowerCase())}" style="display:flex;gap:8px;align-items:flex-start;padding:8px 0;cursor:pointer;border-bottom:1px solid #2d2d30;font-size:12px;">
+                    return `<div class="imp-row" data-text="${this.escapeAttr((it.path + ' ' + (dn ? dn.value : '')).toLowerCase())}" style="display:flex;gap:8px;align-items:flex-start;padding:8px 0;cursor:pointer;border-bottom:1px solid #3a3a3a;font-size:12px;">
                         <input type="checkbox" data-i="${i}" style="margin-top:1px;width:20px;height:20px;flex:none;">
                         <span>${this.getAssetTypeIcon(it.asset)}</span>
-                        <span style="flex:1;word-break:break-all;">${this.escapeHtml(it.path)}${dn && dn.value ? `<br><span style="color:#ce9178;">${this.escapeHtml(dn.value)}</span>` : ''}</span>
-                        <span style="color:#858585;">${this.formatSize(it.asset.dataSize)}</span>
+                        <span style="flex:1;word-break:break-all;">${this.escapeHtml(it.path)}${dn && dn.value ? `<br><span style="color:#ffb870;">${this.escapeHtml(dn.value)}</span>` : ''}</span>
+                        <span style="color:#aaaaaa;">${this.formatSize(it.asset.dataSize)}</span>
                     </div>`;
                 }).join('');
 
@@ -6583,7 +6930,7 @@
                             <button class="modal-close" data-act="close">&times;</button>
                         </div>
                         <div class="modal-content">
-                            <div style="font-size:11px;color:#888;margin-bottom:8px;">読み込み元: ${this.escapeHtml(fileName)}（${items.length}件）</div>
+                            <div style="font-size:11px;color:#aaaaaa;margin-bottom:8px;">読み込み元: ${this.escapeHtml(fileName)}（${items.length}件）</div>
                             <div class="imp-layout">
                             <div class="form-group imp-left">
                                 <label class="form-label">取り込むアセット</label>
@@ -6592,7 +6939,7 @@
                                     <button class="btn-secondary" data-act="all">全選択</button>
                                     <button class="btn-secondary" data-act="none">全解除</button>
                                 </div>
-                                <div data-act="list" style="max-height:34vh;overflow:auto;border:1px solid #3e3e42;border-radius:3px;padding:0 8px;">${rows}</div>
+                                <div data-act="list" style="max-height:34vh;overflow:auto;border:1px solid #555555;border-radius:3px;padding:0 8px;">${rows}</div>
                             </div>
                             <div class="form-group imp-right">
                                 <label class="form-label">プレビュー（一覧をタップ）</label>
@@ -6612,7 +6959,7 @@
                             <div class="form-group">
                                 <label style="display:flex;gap:8px;font-size:12px;"><input type="checkbox" data-act="loc" checked> スキンの名前（.loc）もコピー</label>
                                 <label style="display:flex;gap:8px;font-size:12px;margin-top:6px;"><input type="checkbox" data-act="cape" checked> スキンのマントも一緒に取り込む</label>
-                                <div style="font-size:11px;color:#888;margin-top:6px;">スキンIDが重複する場合は自動で振り直します。同名の画像などは取り込まずスキップします。</div>
+                                <div style="font-size:11px;color:#aaaaaa;margin-top:6px;">スキンIDが重複する場合は自動で振り直します。同名の画像などは取り込まずスキップします。</div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -6645,7 +6992,7 @@
                         if (e.target.tagName === 'INPUT') return;
                         const i = parseInt(r.querySelector('input').dataset.i, 10);
                         rowEls.forEach(x => x.style.background = '');
-                        r.style.background = '#094771';
+                        r.style.background = '#2f5a1e';
                         this.renderExternalPreview(items[i].asset, previewBox, items);
                     });
                 });
@@ -6893,12 +7240,12 @@
                         return;
                     }
                     container.innerHTML = `<div style="text-align:center;">
-                        <img src="${dataUrl}" style="max-width:100%;image-rendering:pixelated;border:1px solid #3e3e42;background:repeating-conic-gradient(#2a2a2a 0% 25%, #1e1e1e 0% 50%) 50% / 20px 20px;" />
-                        <div style="color:#858585;font-size:11px;margin-top:6px;">${img.width} × ${img.height} px</div>
+                        <img src="${dataUrl}" style="max-width:100%;image-rendering:pixelated;border:1px solid #555555;background:repeating-conic-gradient(#303030 0% 25%, #2b2b2b 0% 50%) 50% / 20px 20px;" />
+                        <div style="color:#aaaaaa;font-size:11px;margin-top:6px;">${img.width} × ${img.height} px</div>
                     </div>`;
                 };
                 img.onerror = () => {
-                    container.innerHTML = '<div class="empty-message"><div class="empty-icon">🖼️</div>画像の表示に失敗しました</div>';
+                    container.innerHTML = '<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-painting"></i></div>画像の表示に失敗しました</div>';
                 };
                 img.src = dataUrl;
             }
@@ -6943,10 +7290,10 @@
                         </div>
                     </div>
                     <div class="skin-panel-actions">
-                        <button class="btn-asset-action" onclick="viewer.applySkinEdits()">✔ 変更を適用</button>
+                        <button class="btn-asset-action" onclick="viewer.applySkinEdits()"><i class="mc-ico mc-ico-check"></i> 変更を適用</button>
                         <button class="btn-asset-action secondary" onclick="viewer.duplicateSkin()">⧉ このスキンを複製</button>
-                        <button class="btn-asset-action secondary" onclick="viewer.replaceSelectedSkinImage()">🖼 画像を置き換え</button>
-                        <button class="btn-asset-action secondary" onclick="viewer.importPropsFromOtherPck()">📥 別のPCKから詳細をコピー</button>
+                        <button class="btn-asset-action secondary" onclick="viewer.replaceSelectedSkinImage()"><i class="mc-ico mc-ico-painting"></i> 画像を置き換え</button>
+                        <button class="btn-asset-action secondary" onclick="viewer.importPropsFromOtherPck()"><i class="mc-ico mc-ico-inbox"></i> 別のPCKから詳細をコピー</button>
                     </div>
                 </div>`;
             }
