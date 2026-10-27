@@ -2181,6 +2181,7 @@
             <div class="sidebar-action-button">
                 <button class="btn-action" onclick="viewer.openSkinAddDialog()"><i class="mc-ico mc-ico-plus"></i> ADD SKIN</button>
                 <button class="btn-action" style="margin-top:8px;" onclick="viewer.importAssetsFromOtherPck()"><i class="mc-ico mc-ico-inbox"></i> 他のPCKから取り込む</button>
+                <button class="btn-action" style="margin-top:8px;" onclick="viewer.randomizeAllSkinIds()"><i class="mc-ico mc-ico-star"></i> 全スキンIDをランダム化</button>
             </div>
         </div>
 
@@ -6479,6 +6480,114 @@
                 document.getElementById('skinIdInput').value = newId;
             }
 
+
+            // ========== 全スキンIDの一括ランダム化 ==========
+            async randomizeAllSkinIds() {
+                if (!this.assets || this.assets.length === 0) {
+                    this.showNotice('先にPCKファイルを開いてください', 'warning');
+                    return;
+                }
+                const SKIN_RE = /dlcskin(\d{8})/i;
+                const isSkin = (a) => a.typeCode === 0 && SKIN_RE.test(a.filename);
+
+                // 対象スキンを集める（ルート直下 + 各PCKの中）
+                const topSkins = this.assets.filter(isSkin);
+                const pckGroups = [];
+                this.assets.forEach(a => {
+                    if (!this.isPckFile(a)) return;
+                    try {
+                        const n = this.readPckMeta(a).childAssets.filter(isSkin).length;
+                        if (n > 0) pckGroups.push({ pck: a, count: n });
+                    } catch (e) {
+                        console.warn('PCKの読み込みに失敗:', a.filename, e);
+                    }
+                });
+                const total = topSkins.length + pckGroups.reduce((sum, g) => sum + g.count, 0);
+                if (total === 0) {
+                    this.showNotice('ID変更できるスキンが見つかりませんでした', 'warning');
+                    return;
+                }
+
+                if (!await this.showConfirm(
+                    `スキン${total}個のIDをすべてランダムに変更します。\nファイル名と名前のLOCキーも一緒に更新されます。よろしいですか？`,
+                    { title: 'スキンIDを一括ランダム化', confirmText: '実行' }
+                )) return;
+
+                // 重複しない新IDを必要な数だけ先に確保（失敗したら何も変更しない）
+                const used = this.collectUsedIds();
+                const newIds = [];
+                for (let i = 0; i < total; i++) {
+                    let id = null;
+                    for (let t = 0; t < 10000; t++) {
+                        const c = Math.floor(Math.random() * (99999998 - 100000 + 1)) + 100000;
+                        if (!used.has(c)) { id = c; break; }
+                    }
+                    if (id === null) {
+                        this.showNotice('空いているスキンIDが足りません', 'error');
+                        return;
+                    }
+                    used.add(id);
+                    newIds.push(id);
+                }
+
+                // 選択中スキンの追跡用
+                const sel = this.selectedAsset;
+                const selOldName = sel ? sel.filename : null;
+                const selParent = sel && sel._parentPckInfo ? sel._parentPckInfo.asset : null;
+                let selNewName = null;
+                let cursor = 0;
+
+                const renameSkin = (asset, parent, locRenames) => {
+                    const pad = String(newIds[cursor++]).padStart(8, '0');
+                    const oldName = asset.filename;
+                    asset.filename = asset.filename.replace(SKIN_RE, 'dlcskin' + pad);
+                    ['DISPLAYNAMEID', 'THEMENAMEID'].forEach(k => {
+                        const v = this.getProp(asset, k);
+                        if (!v) return;
+                        const nv = v.replace(/dlcskin\d{8}/i, 'dlcskin' + pad);
+                        if (nv !== v) {
+                            this.setProp(asset, k, nv);
+                            locRenames.push([v, nv]);
+                        }
+                    });
+                    if (selOldName !== null && oldName === selOldName && parent === selParent) {
+                        selNewName = asset.filename;
+                    }
+                };
+                const applyLoc = (renames) => (r) => {
+                    renames.forEach(([o, n]) => {
+                        if (r.keys.includes(o)) this.locRenameKey(r, o, n);
+                    });
+                };
+
+                try {
+                    // ルート直下のスキン
+                    if (topSkins.length > 0) {
+                        const renames = [];
+                        topSkins.forEach(a => renameSkin(a, null, renames));
+                        this.editLoc(null, applyLoc(renames));
+                    }
+                    // PCK内のスキン
+                    pckGroups.forEach(g => {
+                        const meta = this.readPckMeta(g.pck);
+                        const renames = [];
+                        meta.childAssets.filter(isSkin).forEach(a => renameSkin(a, g.pck, renames));
+                        this.rewritePck(g.pck, meta);
+                        this.editLoc(g.pck, applyLoc(renames));
+                    });
+                } catch (e) {
+                    console.error('スキンIDのランダム化に失敗:', e);
+                    this.showNotice(`失敗しました: ${e.message}`, 'error', 4000);
+                    this.markDirty();
+                    this.displayAssets();
+                    return;
+                }
+
+                this.markDirty();
+                this.displayAssets();
+                if (selNewName) this.selectByFilename(selNewName);
+                this.showNotice(`スキン${total}個のIDをランダムに変更しました`, 'success');
+            }
 
             // ========== スキン複製・詳細編集（追加機能） ==========
             markDirty() {
