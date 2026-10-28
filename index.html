@@ -5437,6 +5437,8 @@
                     
                     // プロパティ追加ボタン
                     html += `<button class="btn-asset-action" onclick="viewer.addProperty()"><i class="mc-ico mc-ico-plus"></i> プロパティ追加</button>`;
+                    html += ` <button class="btn-asset-action secondary" onclick="viewer.exportPropertiesCsv()"><i class="mc-ico mc-ico-floppy"></i> CSVで保存</button>`;
+                    html += ` <button class="btn-asset-action secondary" onclick="viewer.importPropertiesCsv()"><i class="mc-ico mc-ico-inbox"></i> CSVから戻す</button>`;
                     
                     // アクションボタン
                     html += '<div class="asset-action-buttons">';
@@ -5444,9 +5446,112 @@
                 } else {
                     html += `<div class="empty-message"><div class="empty-icon"><i class="mc-ico mc-ico-list"></i></div>プロパティなし</div>`;
                     html += `<button class="btn-asset-action" onclick="viewer.addProperty()"><i class="mc-ico mc-ico-plus"></i> プロパティ追加</button>`;
+                    html += ` <button class="btn-asset-action secondary" onclick="viewer.importPropertiesCsv()"><i class="mc-ico mc-ico-inbox"></i> CSVから戻す</button>`;
                 }
 
                 container.innerHTML = html;
+            }
+
+            // 選択中アセットのプロパティ（BOX / OFFSET / ANIM など全部）をCSVで保存
+            exportPropertiesCsv() {
+                const asset = this.selectedAsset;
+                if (!asset || !asset.properties || asset.properties.length === 0) {
+                    this.showNotice('保存できるプロパティがありません', 'warning');
+                    return;
+                }
+                const esc = (v) => {
+                    const t = String(v === undefined || v === null ? '' : v);
+                    return /[",\r\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+                };
+                const rows = [['key', 'value']];
+                asset.properties.forEach(p => rows.push([p.key, p.value]));
+                // Excelで文字化けしないようBOM付きUTF-8、改行はCRLF
+                const csv = '\uFEFF' + rows.map(r => r.map(esc).join(',')).join('\r\n') + '\r\n';
+
+                const base = (asset.filename.split('/').pop() || 'asset').replace(/\.[^.]+$/, '');
+                const fileName = base + '_properties.csv';
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                this.showNotice(`CSVを保存しました: ${fileName}`, 'success');
+            }
+
+            // CSV（key,value）を読み込んで、選択中アセットのプロパティを置き換える
+            parseCsv(text) {
+                if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+                const rows = [];
+                let row = [], cell = '', inQ = false;
+                for (let i = 0; i < text.length; i++) {
+                    const c = text[i];
+                    if (inQ) {
+                        if (c === '"') {
+                            if (text[i + 1] === '"') { cell += '"'; i++; }
+                            else inQ = false;
+                        } else cell += c;
+                    } else if (c === '"') {
+                        inQ = true;
+                    } else if (c === ',') {
+                        row.push(cell); cell = '';
+                    } else if (c === '\r' || c === '\n') {
+                        if (c === '\r' && text[i + 1] === '\n') i++;
+                        row.push(cell); cell = '';
+                        rows.push(row); row = [];
+                    } else cell += c;
+                }
+                if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); }
+                return rows;
+            }
+
+            importPropertiesCsv() {
+                const asset = this.selectedAsset;
+                if (!asset) {
+                    this.showNotice('先にアセットを選んでください', 'warning');
+                    return;
+                }
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.csv,text/csv';
+                input.onchange = async (e) => {
+                    const f = e.target.files[0];
+                    if (!f) return;
+                    try {
+                        const rows = this.parseCsv(await f.text());
+                        if (rows.length > 0 && rows[0][0] && rows[0][0].trim().toLowerCase() === 'key') rows.shift();
+                        const props = [];
+                        let skipped = 0;
+                        rows.forEach(r => {
+                            if (r.length === 0 || (r.length === 1 && r[0].trim() === '')) return; // 空行
+                            const key = (r[0] || '').trim();
+                            if (!key) { skipped++; return; }
+                            props.push({ key, value: r[1] !== undefined ? r[1] : '' });
+                        });
+                        if (props.length === 0) {
+                            this.showNotice('CSVにプロパティが見つかりませんでした', 'warning');
+                            return;
+                        }
+                        const before = (asset.properties || []).length;
+                        if (!await this.showConfirm(
+                            `「${asset.filename.split('/').pop()}」のプロパティ（現在${before}件）を、CSVの${props.length}件で置き換えます。よろしいですか？`,
+                            { title: 'CSVから戻す', confirmText: '置き換える' }
+                        )) return;
+
+                        asset.properties = props;
+                        this.commitAsset(asset);
+                        this.displayAssets();
+                        this.selectByFilename(asset.filename);
+                        this.showNotice(`プロパティを${props.length}件読み込みました` + (skipped ? `（キーが空の${skipped}行は無視）` : ''), 'success');
+                    } catch (err) {
+                        console.error('CSV読み込みに失敗:', err);
+                        this.showNotice(`CSVの読み込みに失敗しました: ${err.message}`, 'error', 4000);
+                    }
+                };
+                input.click();
             }
 
             formatSize(bytes) {
